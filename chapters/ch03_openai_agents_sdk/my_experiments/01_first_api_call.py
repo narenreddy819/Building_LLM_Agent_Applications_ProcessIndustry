@@ -2,27 +2,23 @@ import os
 from openai import OpenAI
 from dotenv import load_dotenv
 
-# load_dotenv("D:/Narender/Building_LLM_Agent_Applications_ProcessIndustry/.env")
-# load_dotenv()
+load_dotenv("D:/Narender/Building_LLM_Agent_Applications_ProcessIndustry/.env")
+load_dotenv()
 
-# # print(os.getenv("OPENAI_API_KEY"))
+print(os.getenv("OPENAI_API_KEY"))
 
-# client = OpenAI()
 
-# response = client.responses.create(model= "gpt-5.2", input = "What is the boiling point of water at sea level?")
 
-# print(response.output_text)
+from ollama import chat
 
-# from ollama import chat
+response = chat(
+    model="mistral",
+    messages=[
+        {"role": "user", "content": "What is the boiling point of water at sea level?"}
+    ]
+)
 
-# response = chat(
-#     model="mistral",
-#     messages=[
-#         {"role": "user", "content": "What is the boiling point of water at sea level?"}
-#     ]
-# )
-
-# print(response["message"]["content"])
+print(response["message"]["content"])
 
 from ollama import chat
 
