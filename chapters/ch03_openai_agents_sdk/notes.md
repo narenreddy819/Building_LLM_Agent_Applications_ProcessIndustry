@@ -835,7 +835,7 @@ Future tools may include:
 * Maintenance Systems
 
 The temperature converter demonstrates the same architecture used by enterprise AI agents.
-
+###
 
 # First Agent with Tool
 
@@ -901,3 +901,215 @@ Agents coordinate.
 ## Takeaway
 
 Agent = LLM + Instructions + Tools
+
+
+###
+# Agent Debugging and Usage Tracking
+
+## Conversation History
+
+```python
+result.to_input_list()
+```
+
+Shows the full interaction history:
+
+* User Input
+* Tool Calls
+* Tool Outputs
+* Final Response
+
+Useful for debugging.
+
+---
+
+## Token Usage
+
+```python
+usage = result.context_wrapper.usage
+```
+
+Provides:
+
+* Input Tokens
+* Output Tokens
+* Request Count
+
+---
+
+## API Requests
+
+Agents may make multiple model calls.
+
+Example:
+
+1. Decide which tool to use.
+2. Process tool output.
+3. Generate final answer.
+
+---
+
+## Key Learning
+
+A single Agent run may involve multiple LLM calls behind the scenes.
+
+This is why Agent workflows often consume more tokens than simple LLM calls.
+
+
+# Chapter 3.3 - Technical Document Assistant
+
+## Objective
+
+Build a web application that allows users to:
+
+* Upload a PDF
+* Ask questions about the PDF
+* Receive answers from an LLM
+
+---
+
+## Architecture
+
+User
+↓
+Upload PDF
+↓
+OpenAI File Upload
+↓
+File ID
+↓
+Ask Question
+↓
+GPT Reads Document
+↓
+Answer
+
+---
+
+## Key Components
+
+### File Upload
+
+```python
+client.files.create(...)
+```
+
+Uploads document to OpenAI.
+
+Returns:
+
+```text
+file_id
+```
+
+---
+
+### Document Q&A
+
+```python
+input_file
++
+input_text
+```
+
+Document provides context.
+
+Question provides instruction.
+
+---
+
+### Streamlit
+
+Used only as the UI layer.
+
+Responsibilities:
+
+* File upload
+* Chat interface
+* Display answers
+* Maintain chat history
+
+---
+
+### Session State
+
+```python
+st.session_state
+```
+
+Stores:
+
+* file_id
+* file_name
+* chat_history
+
+Prevents data loss during Streamlit reruns.
+
+---
+
+## Workflow
+
+PDF
++
+Question
+↓
+LLM
+↓
+Answer
+
+---
+
+## Industrial Applications
+
+* ASU Operating Manuals
+* Cooling Tower SOPs
+* Maintenance Procedures
+* Equipment Manuals
+* Engineering Standards
+
+---
+
+## Relation to RAG
+
+Current Approach:
+
+Upload PDF
+↓
+Ask Question
+↓
+Answer
+
+RAG Approach:
+
+Many Documents
+↓
+Retrieve Relevant Chunks
+↓
+LLM
+↓
+Answer
+
+This example is a precursor to RAG.
+
+---
+
+## Key Learning
+
+A Document Assistant combines:
+
+UI
++
+Document Context
++
+LLM
+
+to provide document-aware answers.
+
+---
+
+## One-Line Takeaway
+
+The Streamlit app is simply a user interface wrapped around the document-question-answering workflow.
+
+
+Messages → Images → Streaming → Agents → Tools → Documents → Application
