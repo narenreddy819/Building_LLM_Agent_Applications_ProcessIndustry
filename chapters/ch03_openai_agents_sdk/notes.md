@@ -621,3 +621,283 @@ Streaming changes how responses are delivered, not how answers are generated.
 The model is the same.
 
 Only the delivery mechanism changes.
+
+
+##################3.2A:3.2
+
+# Building Agents using OpenAI Agents SDK
+
+## Agent Definition
+
+Agent = LLM + Instructions + Tools
+
+---
+
+## Traditional LLM
+
+User
+↓
+LLM
+↓
+Answer
+
+---
+
+## Agent
+
+User
+↓
+Agent
+↓
+LLM
+↓
+Tools
+↓
+Answer
+
+---
+
+## Why Agents Exist
+
+LLMs alone cannot:
+
+* Access live data
+* Query databases
+* Perform external actions
+* Access enterprise systems
+
+Agents solve this limitation.
+
+---
+
+## Examples of Tools
+
+* Search
+* Calculator
+* Database
+* Weather API
+* File Retrieval
+* Plant Historian
+
+---
+
+## Industrial Examples
+
+ASU Assistant
+
+Tools:
+
+* Historian
+* SOP Documents
+* Alarm History
+
+Cooling Tower Copilot
+
+Tools:
+
+* Water Chemistry Data
+* Inspection Reports
+* Performance Calculations
+
+Heat Exchanger Assistant
+
+Tools:
+
+* Fouling Calculations
+* Inspection Data
+* Performance Trends
+
+---
+
+## Key Learning
+
+An Agent is not a smarter LLM.
+
+An Agent is an LLM that can use tools and follow specialized instructions.
+
+
+######
+# First Agent Example
+
+## Objective
+
+Understand how an Agent differs from a normal LLM call.
+
+---
+
+## Traditional LLM
+
+User
+↓
+LLM
+↓
+Answer
+
+---
+
+## Agent
+
+User
+↓
+Agent
+↓
+Tool
+↓
+LLM
+↓
+Answer
+
+---
+
+## Agent Components
+
+Agent =
+
+* Name
+* Instructions
+* Model
+* Tools
+
+---
+
+## Tool
+
+A Python function that the Agent is allowed to call.
+
+Example:
+
+```python
+@function_tool
+def convert_temperature(...)
+```
+
+The decorator exposes the function to the Agent.
+
+---
+
+## Agent Creation
+
+```python
+agent = Agent(...)
+```
+
+Creates an Agent with:
+
+* Instructions
+* Model
+* Tools
+
+---
+
+## Runner
+
+```python
+Runner.run_sync(...)
+```
+
+Executes the Agent.
+
+---
+
+## Internal Flow
+
+User Question
+↓
+Agent Receives Query
+↓
+Agent Selects Tool
+↓
+Tool Executes
+↓
+Result Returned
+↓
+Final Answer Generated
+
+---
+
+## Key Learning
+
+Agents do not replace tools.
+
+Agents decide when and how to use tools.
+
+---
+
+## Industrial AI Connection
+
+Future tools may include:
+
+* Historian Access
+* Plant Documents
+* Calculators
+* Databases
+* Weather APIs
+* Maintenance Systems
+
+The temperature converter demonstrates the same architecture used by enterprise AI agents.
+
+
+# First Agent with Tool
+
+## Flow
+
+User Question
+↓
+Agent
+↓
+LLM decides if tool is needed
+↓
+Tool executes
+↓
+Tool returns result
+↓
+LLM formats final answer
+↓
+User
+
+---
+
+## Key Components
+
+@function_tool
+
+Makes a Python function available to the Agent as a tool.
+
+Agent
+
+Contains:
+
+* Instructions
+* Model
+* Tools
+
+Runner.run_sync()
+
+Starts and executes the Agent.
+
+---
+
+## Key Learning
+
+The LLM does not execute Python code.
+
+The LLM decides:
+
+* Which tool to use
+* What arguments to pass
+
+The SDK executes the tool and returns the result.
+
+---
+
+## Mental Model
+
+Tools compute.
+LLMs communicate.
+Agents coordinate.
+
+---
+
+## Takeaway
+
+Agent = LLM + Instructions + Tools
