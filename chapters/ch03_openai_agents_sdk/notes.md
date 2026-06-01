@@ -336,3 +336,288 @@ Different behavior.
 Messages are more powerful than simple prompts.
 
 The developer role is used to create specialized AI assistants and forms the basis of Agentic AI systems.
+  
+
+  Example 1
+Text
+↓
+Answer
+
+Example 2
+Messages
+↓
+Answer
+
+Example 3
+Developer Role
++
+User Question
+↓
+Specialized Answer
+
+Example 4
+Text
++
+Image
+↓
+Vision Analysis
+
+
+
+########
+# Chapter 3 - Streaming Responses
+
+## Objective
+
+Display text as it is generated instead of waiting for the complete response.
+
+---
+
+## Normal Response
+
+Request
+↓
+Wait
+↓
+Full Response
+↓
+Display
+
+---
+
+## Streaming Response
+
+Request
+↓
+Chunk
+↓
+Chunk
+↓
+Chunk
+↓
+Display Immediately
+
+---
+
+## Key Parameter
+
+```python
+stream=True
+```
+
+Enables streaming mode.
+
+---
+
+## Processing Stream
+
+```python
+for event in response:
+```
+
+Receives chunks as they arrive.
+
+---
+
+## Text Chunks
+
+```python
+event.type == "response.output_text.delta"
+```
+
+Indicates text content.
+
+---
+
+## Actual Text
+
+```python
+event.delta
+```
+
+Contains the generated text fragment.
+
+---
+
+## Display
+
+```python
+print(event.delta, end="", flush=True)
+```
+
+end=""
+
+Avoids line breaks.
+
+flush=True
+
+Displays text immediately.
+
+---
+
+## Benefits
+
+* Better user experience
+* Faster perceived response time
+* Useful for chat interfaces
+* Useful for AI assistants
+
+---
+
+## Industrial Use Cases
+
+* ASU Assistant
+* Cooling Tower Copilot
+* Plant Chatbot
+* Maintenance Assistant
+
+---
+
+## Key Learning
+
+Streaming changes how responses are delivered, not how answers are generated.
+
+The model is the same.
+
+Only the delivery mechanism changes.
+
+
+Multimodal AI
+
+Input:
+Text + Image
+
+Output:
+Text Response
+
+Key Learning:
+LLMs can analyze images in addition to text.
+
+Applications:
+- Leak detection
+- Equipment inspection
+- P&ID analysis
+- Safety audits
+- Maintenance support
+
+Mental Model:
+Image + Question → Reasoning → Answer
+
+
+##
+
+# Chapter 3 - Streaming Responses
+
+## Objective
+
+Display text as it is generated instead of waiting for the complete response.
+
+---
+
+## Normal Response
+
+Request
+↓
+Wait
+↓
+Full Response
+↓
+Display
+
+---
+
+## Streaming Response
+
+Request
+↓
+Chunk
+↓
+Chunk
+↓
+Chunk
+↓
+Display Immediately
+
+---
+
+## Key Parameter
+
+```python
+stream=True
+```
+
+Enables streaming mode.
+
+---
+
+## Processing Stream
+
+```python
+for event in response:
+```
+
+Receives chunks as they arrive.
+
+---
+
+## Text Chunks
+
+```python
+event.type == "response.output_text.delta"
+```
+
+Indicates text content.
+
+---
+
+## Actual Text
+
+```python
+event.delta
+```
+
+Contains the generated text fragment.
+
+---
+
+## Display
+
+```python
+print(event.delta, end="", flush=True)
+```
+
+end=""
+
+Avoids line breaks.
+
+flush=True
+
+Displays text immediately.
+
+---
+
+## Benefits
+
+* Better user experience
+* Faster perceived response time
+* Useful for chat interfaces
+* Useful for AI assistants
+
+---
+
+## Industrial Use Cases
+
+* ASU Assistant
+* Cooling Tower Copilot
+* Plant Chatbot
+* Maintenance Assistant
+
+---
+
+## Key Learning
+
+Streaming changes how responses are delivered, not how answers are generated.
+
+The model is the same.
+
+Only the delivery mechanism changes.
