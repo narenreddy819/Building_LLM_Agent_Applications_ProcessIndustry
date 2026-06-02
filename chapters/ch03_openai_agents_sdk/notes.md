@@ -1113,3 +1113,55 @@ The Streamlit app is simply a user interface wrapped around the document-questio
 
 
 Messages → Images → Streaming → Agents → Tools → Documents → Application
+
+#############
+Tokenization
+=
+Break text into pieces
+
+Embeddings
+=
+Convert pieces into vectors
+
+Attention
+=
+Find important relationships
+
+Transformer
+=
+Process and understand context
+
+Prediction
+=
+Generate next token
+
+
+Language Model Head
+
+Purpose:
+Convert transformer output vectors into token predictions.
+
+Step 1:
+Calculate probability for every token in vocabulary.
+
+Step 2:
+Select the next token.
+
+Example:
+
+"The capital of France is"
+
+↓
+
+Paris = 95%
+London = 2%
+Delhi = 1%
+
+↓
+
+Predict "Paris"
+
+Key Learning:
+
+The transformer understands language;
+the Language Model Head converts understanding into actual words.

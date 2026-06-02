@@ -14,6 +14,7 @@ with open(image_path, "rb") as image_file:
 
 client = OpenAI()
 
-response = client.responses.create(model = "gpt-4.1", input=[{"role":"user", "content":[{"type":"input_text", "text":"Is there any indication of pipe leakage in this image?" }, {"type":"input_image","image_url":f"data:image/png;base64,{base64_image}"}]}])
+response = client.responses.create(model = "gpt-4.1", input=[{"role":"user", "content":[{"type":"input_text", "text":"Is there any indication of pipe leakage in this image?" }, 
+                                                                                        {"type":"input_image","image_url":f"data:image/png;base64,{base64_image}"}]}])
 
 print(response.output_text)
